@@ -47,3 +47,8 @@ func CreateReducedJSONBasedOnMap(m string, o interface{}) (string, error) {
 
 	return json, nil
 }
+
+func ValueOfField(json, fieldName, fieldMap string) gjson.Result {
+	field := gjson.Get(fieldMap, fieldName).String()
+	return gjson.Get(json, field)
+}
