@@ -52,3 +52,18 @@ func ValueOfField(json, fieldName, fieldMap string) gjson.Result {
 	field := gjson.Get(fieldMap, fieldName).String()
 	return gjson.Get(json, field)
 }
+
+func CreateArrayOfJSONs(arr []string) string {
+	ba := make([]byte, 0)
+	ba = append(ba, []byte("[")...)
+	for i := range arr {
+		if i != 0 {
+			ba = append(ba, []byte(",")...)
+		}
+
+		ba = append(ba, []byte(arr[i])...)
+	}
+	ba = append(ba, []byte("]")...)
+
+	return string(ba)
+}
